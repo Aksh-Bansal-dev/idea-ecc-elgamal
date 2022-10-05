@@ -188,15 +188,15 @@ class IDEA:
         # So here we use x1, x3, x2, x4 as input instead of x1, x2, x3, x4
         # in order to cancel the last permutation x2, x3 = x3, x2
         # y1, y2, y3, y4 = _KA_layer(x1, x3, x2, x4, self._keys[4])
-        y1, y2, y3, y4 = _KA_layer(x1, x3, x2, x4, self._keys[4])
+        y1, y2, y3, y4 = _KA_layer(x1, x2, x3, x4, self._keys[4])
 
         ciphertext = (y1 << 12) | (y2 << 8) | (y3 << 4) | y4
         return ciphertext
 
 
 def main():
-    plain = int("1001110010101100",2)
-    # plain = 1000
+    # plain = int("1001110010101100",2)
+    plain = 1000
     key = int("11011100011011110011111101011001",2)
     cipher = int("1011101101001011",2)
 

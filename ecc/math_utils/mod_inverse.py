@@ -1,5 +1,7 @@
-# https://stackoverflow.com/questions/4798654/modular-multiplicative-inverse-function-in-python
-
+#
+# Aksh Bansal
+# 20BCS021
+#
 
 def egcd(a, b):
     if a == 0:

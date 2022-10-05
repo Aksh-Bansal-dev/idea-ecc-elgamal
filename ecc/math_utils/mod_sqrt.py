@@ -1,5 +1,7 @@
-# https://github.com/darkwallet/python-obelisk/blob/5812ccfd78a66963f7238d9835607908a8c8f392/obelisk/numbertheory.py
-
+#
+# Aksh Bansal
+# 20BCS021
+#
 
 def modsqrt(a, p):
     """ Find a quadratic residue (mod p) of 'a'. p

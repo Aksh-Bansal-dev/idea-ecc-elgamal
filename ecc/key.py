@@ -1,4 +1,7 @@
-# Reference to https://github.com/AntonKueltz/fastecdsa
+#
+# Aksh Bansal
+# 20BCS021
+#
 
 from binascii import hexlify
 from os import urandom

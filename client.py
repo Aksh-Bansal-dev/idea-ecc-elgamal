@@ -1,3 +1,8 @@
+#
+# Aksh Bansal
+# 20BCS021
+#
+
 from idea import IDEA
 from ecc.cipher import ElGamal
 from ecc.curve import (P256,Point)

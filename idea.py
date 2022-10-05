@@ -1,4 +1,6 @@
 def addInv(A):
+    if A==0:
+        return 0
     return 16-A
 
 def modInv(A):
@@ -60,6 +62,8 @@ def _KA_layer(x1, x2, x3, x4, round_keys):
     assert 0 <= x3 <= 15
     assert 0 <= x4 <= 15
     z1, z2, z3, z4 = round_keys[0:4]
+    # if z3<0 or z3 > 15:
+    #     print(z1,z2,z3,z4)
     assert 0 <= z1 <= 15
     assert 0 <= z2 <= 15
     assert 0 <= z3 <= 15
@@ -121,7 +125,7 @@ class IDEA:
 
         ikeys = []
         for i in range(4):
-            round_keys = [-1 for xxx in range(6)]
+            round_keys = [0 for xxx in range(6)]
 
             round_keys[0] = modInv(sub_keys[6*(4-i)+0])
             round_keys[1] = addInv(sub_keys[6*(4-i)+1])
@@ -132,7 +136,7 @@ class IDEA:
 
             ikeys.append(tuple(round_keys))
             
-        round_keys = [-1 for xxx in range(6)]
+        round_keys = [0 for xxx in range(6)]
         round_keys[0] = modInv(sub_keys[0])
         round_keys[1] = addInv(sub_keys[1])
         round_keys[2] = addInv(sub_keys[2])
@@ -141,7 +145,7 @@ class IDEA:
 
         # for i in range(len(ikeys)):
         #     for j in range(len(ikeys[0])):
-        #         print(bin(ikeys[i][j]))
+        #         print(ikeys[i][j])
 
         self._keys = tuple(keys)
         self._ikeys = tuple(ikeys)
@@ -197,7 +201,8 @@ class IDEA:
 def main():
     # plain = int("1001110010101100",2)
     plain = 1000
-    key = int("11011100011011110011111101011001",2)
+    # key = int("11011100011011110011111101011001",2)
+    key = 20000
     cipher = int("1011101101001011",2)
 
     print('key\t\t', bin(key))

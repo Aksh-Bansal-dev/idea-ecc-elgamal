@@ -13,7 +13,6 @@ def modInv(A):
     g = gcd(A, M)
  
     if (g != 1):
-        # print("Inverse doesn't exist",A)
         return 0
  
     else:
@@ -67,8 +66,6 @@ def _KA_layer(x1, x2, x3, x4, round_keys):
     assert 0 <= x3 <= 15
     assert 0 <= x4 <= 15
     z1, z2, z3, z4 = round_keys[0:4]
-    # if z3<0 or z3 > 15:
-    #     print(z1,z2,z3,z4)
     assert 0 <= z1 <= 15
     assert 0 <= z2 <= 15
     assert 0 <= z3 <= 15
@@ -118,8 +115,6 @@ class IDEA:
         sub_keys = []
         for i in range(5 * 6):
             sub_keys.append((key >> (28 - 4 * (i % 8))) % 16)
-            # print(bin((key >> (28 - 4 * (i % 8))) % 16))
-            # print((key >> (28 - 4 * (i % 8))) % 16)
             if i % 8 == 7:
                 key = ((key << 6) | (key >> 26)) % modulus
 
@@ -147,10 +142,6 @@ class IDEA:
         round_keys[2] = addInv(sub_keys[2])
         round_keys[3] = modInv(sub_keys[3])
         ikeys.append(tuple(round_keys))
-
-        # for i in range(len(ikeys)):
-        #     for j in range(len(ikeys[0])):
-        #         print(ikeys[i][j])
 
         self._keys = tuple(keys)
         self._ikeys = tuple(ikeys)
@@ -204,10 +195,8 @@ class IDEA:
 
 
 def main():
-    # plain = int("1001110010101100",2)
-    plain = 1000
-    # key = int("11011100011011110011111101011001",2)
-    key = 20000
+    plain = int("1001110010101100",2)
+    key = int("11011100011011110011111101011001",2)
     cipher = int("1011101101001011",2)
 
     print('key\t\t', bin(key))
@@ -219,8 +208,8 @@ def main():
 
     print ('ciphertext\t', bin(encrypted))
     print ('decrypted\t', bin(decrypted))
-    # assert cipher == encrypted
-    # assert decrypted == plain
+    assert cipher == encrypted
+    assert decrypted == plain
 
 
 if __name__ == '__main__':

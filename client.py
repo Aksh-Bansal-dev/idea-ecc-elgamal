@@ -27,7 +27,7 @@ cPrivateKey = int(input())
 # connect to the server on local computer
 s.connect(('127.0.0.1', port))
 
-# receive data from the server and decoding to get the string.
+# request server for public key
 s.send("publickey".encode())
 payload = s.recv(2048).decode().split()
 publicKey = Point(int(payload[0]), int(payload[1]), P256)
@@ -45,8 +45,7 @@ print("Encrypted message:",encMsg)
 
 # Send ciphertext & encrypted key
 s.send((str(encMsg)+" "+(str(encSK1.x)+" "+str(encSK1.y)+" "+str(encSK1.curve))+" "+(str(encSK2.x)+" "+str(encSK2.y)+" "+str(encSK2.curve))).encode())
-# s.send((str(encSK1.x)+" "+str(encSK1.y)+" "+str(encSK1.curve)).encode())
-# s.send((str(encSK2.x)+" "+str(encSK2.y)+" "+str(encSK2.curve)).encode())
+
 # close the connection
 s.close()	
 

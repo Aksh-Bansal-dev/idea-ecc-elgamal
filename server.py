@@ -26,6 +26,11 @@ print ("socket is listening")
 privateKey, publicKey= gen_keypair(P256)
 
 # Ask user for public and private keys
+print("Server's public key parameter: ",end="")
+sPublicKey = int(input())
+print("Server's private key parameter: ",end="")
+sPrivateKey = int(input())
+
 print("Public key: ",publicKey)
 print("Private key: ",privateKey)
 

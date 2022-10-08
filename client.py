@@ -18,10 +18,10 @@ msg = int(input())
 print("Secret key: ",end="")
 secretKey = input()
 
-print("Client's public key: ",end="")
+print("Client's public key parameter: ",end="")
 cPublicKey = int(input())
 
-print("Client's private key: ",end="")
+print("Client's private key parameter: ",end="")
 cPrivateKey = int(input())
 
 # connect to the server on local computer

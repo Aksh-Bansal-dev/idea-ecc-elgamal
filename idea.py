@@ -60,7 +60,7 @@ def _mul(x, y):
     return r
 
 
-def _KA_layer(x1, x2, x3, x4, round_keys):
+def kaLayer(x1, x2, x3, x4, round_keys):
     assert 0 <= x1 <= 15
     assert 0 <= x2 <= 15
     assert 0 <= x3 <= 15
@@ -79,7 +79,7 @@ def _KA_layer(x1, x2, x3, x4, round_keys):
     return y1, y2, y3, y4
 
 
-def _MA_layer(y1, y2, y3, y4, round_keys):
+def maLayer(y1, y2, y3, y4, round_keys):
     assert 0 <= y1 <= 16
     assert 0 <= y2 <= 16
     assert 0 <= y3 <= 16
@@ -156,15 +156,15 @@ class IDEA:
         for i in range(4):
             round_keys = self._ikeys[i]
 
-            y1, y2, y3, y4 = _KA_layer(x1, x2, x3, x4, round_keys)
-            x1, x2, x3, x4 = _MA_layer(y1, y2, y3, y4, round_keys)
+            y1, y2, y3, y4 = kaLayer(x1, x2, x3, x4, round_keys)
+            x1, x2, x3, x4 = maLayer(y1, y2, y3, y4, round_keys)
 
             # x2, x3 = x3, x2
 
         # Note: The words x2 and x3 are not permuted in the last round
         # So here we use x1, x3, x2, x4 as input instead of x1, x2, x3, x4
         # in order to cancel the last permutation x2, x3 = x3, x2
-        y1, y2, y3, y4 = _KA_layer(x1, x2, x3, x4, self._ikeys[4])
+        y1, y2, y3, y4 = kaLayer(x1, x2, x3, x4, self._ikeys[4])
 
         plaintext = (y1 << 12) | (y2 << 8) | (y3 << 4) | y4
         return plaintext
@@ -179,16 +179,16 @@ class IDEA:
         for i in range(4):
             round_keys = self._keys[i]
 
-            y1, y2, y3, y4 = _KA_layer(x1, x2, x3, x4, round_keys)
-            x1, x2, x3, x4 = _MA_layer(y1, y2, y3, y4, round_keys)
+            y1, y2, y3, y4 = kaLayer(x1, x2, x3, x4, round_keys)
+            x1, x2, x3, x4 = maLayer(y1, y2, y3, y4, round_keys)
 
             # x2, x3 = x3, x2
 
         # Note: The words x2 and x3 are not permuted in the last round
         # So here we use x1, x3, x2, x4 as input instead of x1, x2, x3, x4
         # in order to cancel the last permutation x2, x3 = x3, x2
-        # y1, y2, y3, y4 = _KA_layer(x1, x3, x2, x4, self._keys[4])
-        y1, y2, y3, y4 = _KA_layer(x1, x2, x3, x4, self._keys[4])
+        # y1, y2, y3, y4 = kaLayer(x1, x3, x2, x4, self._keys[4])
+        y1, y2, y3, y4 = kaLayer(x1, x2, x3, x4, self._keys[4])
 
         ciphertext = (y1 << 12) | (y2 << 8) | (y3 << 4) | y4
         return ciphertext

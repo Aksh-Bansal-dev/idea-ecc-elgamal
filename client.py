@@ -49,3 +49,4 @@ s.send((str(encMsg)+" "+(str(encSK1.x)+" "+str(encSK1.y)+" "+str(encSK1.curve))+
 # close the connection
 s.close()	
 
+print("Aksh Bansal\n20bcs021")

@@ -21,3 +21,5 @@ request.
 
 Simplified IDEA: [link](https://www.nku.edu/~christensen/simplified%20IDEA%20algorithm.pdf)
 
+## Credits
+- [ECC ElGamal](https://github.com/lc6chang/ecc-pycrypto)
